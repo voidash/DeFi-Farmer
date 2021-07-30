@@ -81,9 +81,25 @@ contract('TokenFarm', (accounts) => {
             assert.equal(result.toString(), 'true', 'investor is investing')
 
             await tokenFarm.issueTokens({ from: accounts[0] })
-
             result = await dappToken.balanceOf(accounts[1])
+            assert.equal(result.toString(), tokens('100'), 'investor Dapp token wallet valid after issuance of token')
+
+
+        })
+        it("checks for unstaking of tokens", async () => {
+            let result;
+
+            await tokenFarm.unstakeTokens({ from: accounts[1] })
+
+            result = await tokenFarm.isStaking(accounts[1]);
+            assert.equal(result.toString(), 'false', 'after unstaking investor is not staking')
+
+            result = await daiToken.balanceOf(tokenFarm.address)
+            assert.equal(result.toString(), tokens('0'), 'owner Dapp token wallet valid after unstaking')
+
+            result = await daiToken.balanceOf(accounts[1])
             assert.equal(result.toString(), tokens('100'), 'investor Dapp token wallet valid after issuance of token')
         })
     })
+
 })

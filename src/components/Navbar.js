@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import farmer from '../farmer.png'
+import dai from '../dai.png'
+import eth from '../eth-logo.png'
 
 class Navbar extends Component {
 
@@ -12,8 +13,9 @@ class Navbar extends Component {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src={farmer} width="30" height="30" className="d-inline-block align-top" alt="" />
-          &nbsp; DApp Token Farm
+          <img src={eth} width="30" height="30" className="d-inline-block align-top" alt="" />
+          <img src={dai} width="30" height="30" className="d-inline-block align-top" alt="" />
+          &nbsp; Ash Token Farm
         </a>
 
         <ul className="navbar-nav px-3">

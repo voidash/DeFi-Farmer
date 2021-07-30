@@ -52,6 +52,16 @@ contract TokenFarm {
             }
         }
     }
+
+    function unstakeTokens() public {
+        uint balance = stakingBalance[msg.sender];
+
+        require(balance > 0, "you haven't staked");
+
+        daiToken.transfer(msg.sender,balance);
+        stakingBalance[msg.sender] = 0;
+        isStaking[msg.sender] = false;
+    }
 }
 
 
